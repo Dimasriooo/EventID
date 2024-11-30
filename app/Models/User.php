@@ -52,7 +52,7 @@ class User extends Model
     use HasFactory;
     
     protected $table = 'users';
-    protected $primaryKey = 'UsersID';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'name',
