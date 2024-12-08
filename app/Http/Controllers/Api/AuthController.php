@@ -16,6 +16,7 @@ class AuthController extends Controller
         "password" => Hash::make($request->password),
         "email" => $request->email,
         ];
+
         $user = User::create($input);
         return response()->json([
         "status" => "success",
@@ -24,7 +25,7 @@ class AuthController extends Controller
     }
     public function login(Request $request){
         $input = [
-        "Email" => $request->email,
+        "email" => $request->email,
         "password" => $request->password,
         ];
         $user = User::where("email", $input["email"])->first();

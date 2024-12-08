@@ -16,7 +16,13 @@ Route::post("/login", [AuthController::class,
 
 
 Route::middleware('api')->group(function () {
-    Route::resource('bookings', BookingController::class);
+    // Route::resource('bookings', BookingController::class);
+    Route::get('/bookings', [BookingController::class, "index"]);
+    Route::post('/bookings', [BookingController::class, "store"]);
+    Route::put('/bookings/{id}', [BookingController::class, "update"]);
+    Route::delete('/bookings/{id}', [BookingController::class, "destroy"]);
+    Route::get('/bookings/{id}', [BookingController::class, "Show"]);
+
     Route::resource('users', UserController::class);
     Route::resource('packages', PackageController::class);
     Route::resource('packagesFeatures', PackageFeaturesController::class);
