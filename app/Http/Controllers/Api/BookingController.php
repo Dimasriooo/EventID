@@ -34,8 +34,8 @@ class BookingController extends Controller
     {
 
         $validatedData = $request->validate([
-            'UsersID' => 'required|exists:users,UsersID',
-            'Packages_id' => 'required|exists:packages,Packages_id',
+            'UsersID' => 'required|exists:users,id',
+            'Packages_id' => 'required|exists:packages,id',
             'event_date' => 'required|date',
             'total_price' => 'required|numeric',
             'status' => 'in:pending,confirmed,completed',
@@ -44,7 +44,7 @@ class BookingController extends Controller
 
 
         $booking = Booking::create($validatedData);
-        return response()->json(['message'=> 'Booking created successfully', 'data' => $booking], 201);
+        return response()->json(['message'=> 'Booking created successfully', 'data' => $booking], 200);
     }
 
     /**
