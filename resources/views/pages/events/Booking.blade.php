@@ -15,13 +15,25 @@
         <thead>
             <tr>
                 <th>no</th>
-                <th>Name</th>
-                <th>description</th>
-                <th>base_price</th>
-                <th>Max_guest</th>
-                <th>category</th>
-                <th>Duration_hours</th>
+                <th>event_date</th>
+                <th>status</th>
+                <th>total_price</th>
+                <th>additional_notes</th>
+                <th>packages_id</th>
+                <th>user_id</th>
             </tr>
         </thead>
-
+        <tbody>
+            @foreach ($booking as $item)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item->event_date }}</td>
+                    <td>{{ $item->status }}</td>
+                    <td>{{ $item->total_price }}</td>
+                    <td>{{ $item->additional_notes }}</td>
+                    <td>{{ $item->user_id }}</td>
+                    <td>{{ $item->packages_id }}</td>
+                </tr>
+            @endforeach
+        </tbody>
 @endsection

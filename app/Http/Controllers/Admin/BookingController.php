@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
 {
-    public function index() {
-        $booking = DB::table('booking')-> get();
+    public function Book() {
+        $booking = DB::table('bookings')-> get();
         return view('pages.events.Booking', [
-            "Booking" => $booking
+            "booking" => $booking
         ]);
     }
 }
