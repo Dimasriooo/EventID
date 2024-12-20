@@ -9,6 +9,8 @@ class PackageFeatures extends Model
 {
     use HasFactory;
 
+    protected $table = "package_features";
+
     protected $fillable = [
         'name', 
         'description',

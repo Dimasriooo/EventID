@@ -29,9 +29,9 @@ class PackageFeaturesController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'Packages_id' => 'required|exists:packages,Packages_id',
-            'feature_name' => 'required|max:100',
-            'feature_description' => 'nullable'
+            'name' => 'required|max:100',
+            'description' => 'nullable',
+            'packages_id' => 'required|exists:packages,id',
         ]);
 
         return PackageFeatures::create($validatedData);
@@ -60,8 +60,8 @@ class PackageFeaturesController extends Controller
     {
         $packageFeature = PackageFeatures::findOrFail($id);
         $validatedData = $request->validate([
-            'feature_name' => 'sometimes|max:100',
-            'feature_description' => 'nullable'
+            'name' => 'sometimes|max:100',
+            'description' => 'nullable'
         ]);
 
         $packageFeature->update($validatedData);

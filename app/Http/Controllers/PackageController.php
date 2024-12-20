@@ -29,10 +29,10 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'Package_nama' => 'required|max:100',
+            'name' => 'required|max:100',
             'description' => 'nullable',
-            'Base_price' => 'required|numeric',
-            'Max_guest' => 'nullable|integer',
+            'base_price' => 'required|numeric',
+            'max_guest' => 'nullable|integer',
             'category' => 'required|in:wedding,birthday,gathering',
             'duration_hours' => 'nullable|integer'
         ]);

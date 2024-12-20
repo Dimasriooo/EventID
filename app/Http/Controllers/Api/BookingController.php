@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -32,16 +33,15 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-
+        return ["user" => Auth::user()];
         $validatedData = $request->validate([
-            'UsersID' => 'required|exists:users,id',
-            'Packages_id' => 'required|exists:packages,id',
+            'user_id' => 'required|exists:users,id',
+            'packages_id' => 'required|exists:packages,id',
             'event_date' => 'required|date',
             'total_price' => 'required|numeric',
             'status' => 'in:pending,confirmed,completed',
             'additional_notes' => 'nullable'
         ]);
-
 
         $booking = Booking::create($validatedData);
         return response()->json(['message'=> 'Booking created successfully', 'data' => $booking], 200);
@@ -78,7 +78,6 @@ class BookingController extends Controller
         ]);
 
         $booking->update($validatedData);
-        return $booking;
 
         return response()->json(['message' => 'Booking updated successfully', 'data' => $booking]);
 
