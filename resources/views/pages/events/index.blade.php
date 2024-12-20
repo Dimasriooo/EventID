@@ -3,9 +3,9 @@
 
 @section('header')
     <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Dashboard</li>
+    </ol>
 @endsection
 
 
@@ -24,17 +24,17 @@
                 </tr>
             </thead>
             <tbody>
-               @foreach ($packages as $package)
-               <tr>
-                <td>{{  $package-> id}}</td>
-                <td>{{  $package-> name}}</td>
-                <td>{{  $package-> description}}</td>
-                <td>{{  $package-> base_price}}</td>
-                <td>{{  $package-> max_guest}}</td>
-                <td>{{  $package-> category}}</td>
-                <td>{{  $package-> duration_hours}}</td>
-            </tr>
-               @endforeach
+                @foreach ($packages as $package)
+                    <tr>
+                        <td>{{ $package->id }}</td>
+                        <td>{{ $package->name }}</td>
+                        <td>{{ $package->description }}</td>
+                        <td>{{ $package->base_price }}</td>
+                        <td>{{ $package->max_guest }}</td>
+                        <td>{{ $package->category }}</td>
+                        <td>{{ $package->duration_hours }}</td>
+                    </tr>
+                @endforeach
             </tbody>
             <tbody>
-@endsection
+            @endsection
