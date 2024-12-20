@@ -11,7 +11,16 @@
         'path' => '/packages',
         ],
     ];
+    $bookings = [
+        (object) [
+        'title' => 'Booking',
+        'icon' => 'fas fa-search fa-fw',
+        'path' => '/bookings',
+        ],
+    ];
 
+        
+        
 @endphp
 
 
@@ -41,10 +50,12 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     packagesFeatures
                 </a>
-                <a class="nav-link" href="index.html">
+                @foreach  ($bookings as $booking )
+                <a class="nav-link" href="{{ $booking-> path }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     booking
                 </a>
+                @endforeach
             </div>
         </div>
     </nav>
