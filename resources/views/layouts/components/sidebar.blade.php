@@ -34,6 +34,7 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
+                <div class="sb-sidenav-menu-heading">Dashboard</div>
                 {{-- @foreach ($menus as $menu )  --}}
                 {{-- <div class="sb-sidenav-menu-heading"></div>
                 <a class="nav-link" href="{{ $menu->path }}">
@@ -47,6 +48,7 @@
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                     Dashboard
                 </a>
+                <div class="sb-sidenav-menu-heading">Admin</div>
                 <a class="nav-link" href="/packages">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                     packages
