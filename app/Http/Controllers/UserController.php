@@ -34,7 +34,7 @@ class UserController extends Controller
             'Email' => 'required|email|unique:users,Email',
             'Password' => 'required|min:6',
             'phone_number' => 'nullable|max:20',
-            'role' => 'in:admin,customer'
+            'role' => 'required|in:admin,customer'
         ]);
 
         $validatedData['Password'] = Hash::make($validatedData['Password']);
