@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index']);
 
-
-Route::get('/packages', [PackageController::class, 'index']);
+Route::resource('packages', PackageController::class);
+Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');;
+Route::get('/packages/create', [PackageController::class, 'create'])->name('packages.create');
+Route::get('/packages/{id}/edit', [PackageController::class, 'edit'])->name('packages.edit');
+Route::put('/packages/{id}', [PackageController::class, 'update'])->name('packages.update');
+Route::delete('/packages/{id}', [PackageController::class, 'destroy'])->name('packages.destroy');
 
 Route::get('/Bookings', [BookingController::class, 'Book']);
 

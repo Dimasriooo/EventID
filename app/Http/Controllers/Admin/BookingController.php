@@ -11,7 +11,7 @@ class BookingController extends Controller
 {
     public function Book() {
         $booking = DB::table('bookings')-> get();
-        return view('pages.events.Booking', [
+        return view('pages.events.Booking.Booking', [
             "booking" => $booking
         ]);
     }

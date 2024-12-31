@@ -11,7 +11,7 @@ class PackageFeaturesController extends Controller
     public function feature() {
         
         $feature = DB::table('Package_features')-> get();
-        return view('pages.events.packagesfeatures', [
+        return view('pages.events.featured.packagesfeatures', [
             "feature" => $feature
         ]);
     }
