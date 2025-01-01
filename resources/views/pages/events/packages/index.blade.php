@@ -1,59 +1,101 @@
 @extends('layouts.index')
 
-
-@section('header')
-    <h1 class="mt-4">Dashboard Package</h1>
-    <div class="mb-4">
-        <a href="{{ route('packages.create') }}" class="btn btn-primary">Tambah Package</a>
-</div>
-@endsection
-
-
 @section('content')
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Dashboard Package</h1>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>Data Package</div>
+                <a href="{{ route('packages.create') }}" class="btn btn-primary">Tambah Package</a>
+            </div>
+        </div>
+        
         @if(session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <span class="block sm:inline">{{ session('success') }}</span>
+            <div class="alert alert-success mx-4 mt-3" role="alert">
+                {{ session('success') }}
             </div>
         @endif
 
-        <div class="card-body">  
-        <table id="datatablesSimple" class="table table-bordered">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="px-6 py-3 border-b text-left">no</th>
-                    <th class="px-6 py-3 border-b text-left">Name</th>
-                    <th class="px-6 py-3 border-b text-left">description</th>
-                    <th class="px-6 py-3 border-b text-left">base_price</th>
-                    <th class="px-6 py-3 border-b text-left">Max_guest</th>
-                    <th class="px-6 py-3 border-b text-left">category</th>
-                    <th class="px-6 py-3 border-b text-left">Duration_hours</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($packages as $package)
-                    <tr class="hover:bg-gray-50">
-                        <td class="px-6 py-4 border-b">{{ $package->id }}</td>
-                        <td class="px-6 py-4 border-b">{{ $package->name }}</td>
-                        <td class="px-6 py-4 border-b">{{ $package->description }}</td>
-                        <td class="px-6 py-4 border-b">{{ $package->base_price }}</td>
-                        <td class="px-6 py-4 border-b">{{ $package->max_guest }}</td>
-                        <td class="px-6 py-4 border-b">{{ $package->category }}</td>
-                        <td class="px-6 py-4 border-b">{{ $package->duration_hours }}</td>
-                        <td class="px-6 py-4 border-b">
-                            <div class="flex space-x-2">
-                                <a href="{{ route('packages.edit', $package->id) }}" 
-                                    type="submit" class="btn btn-warning">
-                                    Edit
-                                </a>
-                                <br>
-                            <form action="{{ route('packages.destroy', $package->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus package ini?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Hapus</button>
-                            </form>
-                        </td>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table table-bordered table-striped w-100">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Base Price</th>
+                        <th>Max Guest</th>
+                        <th>Category</th>
+                        <th>Duration Hours</th>
+                        <th>Actions</th>
                     </tr>
-                @endforeach
-            </tbody>
-            <tbody>
-            @endsection
+                </thead>
+                <tbody>
+                    @foreach ($packages as $package)
+                        <tr>
+                            <td>{{ $package->id }}</td>
+                            <td>{{ $package->name }}</td>
+                            <td>{{ $package->description }}</td>
+                            <td>{{ $package->base_price }}</td>
+                            <td>{{ $package->max_guest }}</td>
+                            <td>{{ $package->category }}</td>
+                            <td>{{ $package->duration_hours }}</td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <a href="{{ route('packages.edit', $package->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <form action="{{ route('packages.destroy', $package->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" 
+                                                onclick="return confirm('Apakah Anda yakin ingin menghapus package ini?')">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+.container-fluid {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    width: 100%;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+#datatablesSimple {
+    width: 100% !important;
+}
+
+.card {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.d-flex.gap-2 {
+    gap: 0.5rem !important;
+}
+
+.alert {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
+    }
+}
+</style>
+@endsection

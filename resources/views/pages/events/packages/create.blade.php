@@ -1,10 +1,9 @@
-@extends('layouts.index')
-
-@section('header')
-    <h1 class="mt-4">Tambah Package</h1>
-@endsection
-
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Package</title>
     <style>
         /* Gaya untuk form */
         .form-container {
@@ -67,7 +66,9 @@
             font-style: italic;
         }
     </style>
-
+</head>
+<body>
+    <h1 class="mt-4">Tambah Package</h1>
     <div class="form-container">
         <form action="{{ route('packages.store') }}" method="POST">
             @csrf
@@ -129,4 +130,5 @@
             </div>
         </form>
     </div>
-@endsection
+</body>
+</html>

@@ -1,19 +1,26 @@
-@extends('layouts.index')
-
-@section('header')
-    <h1 class="mt-4">Edit Package</h1>
-@endsection
-
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Package</title>
     <style>
         /* Gaya umum untuk form */
         .form-container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+        }
+
+        /* Gaya untuk header */
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
         }
 
         /* Gaya untuk label */
@@ -38,6 +45,14 @@
             box-sizing: border-box;
         }
 
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
         /* Gaya untuk tombol */
         .btn-primary {
             padding: 10px 20px;
@@ -46,6 +61,10 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn-primary:hover {
@@ -53,7 +72,16 @@
         }
 
         .btn-secondary {
+            padding: 10px 20px;
             background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn-secondary:hover {
@@ -66,9 +94,40 @@
             font-size: 12px;
             font-style: italic;
         }
-    </style>
 
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .space-x-4 > * {
+            margin-right: 16px;
+        }
+
+        .space-x-4 > *:last-child {
+            margin-right: 0;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .btn-primary, .btn-secondary {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
     <div class="form-container">
+        <h1>Edit Package</h1>
         <form action="{{ route('packages.update', $package->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -132,4 +191,5 @@
             </div>
         </form>
     </div>
-@endsection
+</body>
+</html>
