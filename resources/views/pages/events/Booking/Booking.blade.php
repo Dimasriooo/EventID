@@ -9,6 +9,9 @@
 @section('content')
 
 <div class="card-body">
+    <div class="mb-3">
+        <a href="{{ route('booking.create') }}" class="btn btn-primary">Tambah Booking</a>
+    </div>
     <table id="datatablesSimple">
         <thead>
             <tr>
@@ -31,6 +34,15 @@
                     <td>{{ $item->additional_notes }}</td>
                     <td>{{ $item->user_id }}</td>
                     <td>{{ $item->packages_id }}</td>
+                    <td>
+                        <a href="{{ route('booking.edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <form action="{{ route('booking.destroy', $item->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+                    
                 </tr>
             @endforeach
         </tbody>

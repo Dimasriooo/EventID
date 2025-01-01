@@ -12,14 +12,18 @@
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                     packages
                 </a>
-                <a class="nav-link" href="/Features">
+                <a class="nav-link" href="/featured">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     packagesFeatured
                 </a>
                
-                <a class="nav-link" href="/Bookings">
+                <a class="nav-link" href="/booking">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></i></div>
                     booking
+                </a>
+                <a class="nav-link" href="/users">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-bell"></i></i></div>
+                    User
                 </a>
                 
                 
