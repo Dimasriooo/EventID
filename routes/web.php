@@ -8,11 +8,9 @@ use App\Http\Controllers\Api\AuthController;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\loginController;
 
 
-// Route::get('/', function () {
-//     return view('layouts.index');
-// });
 
 Route::get('/', [DashboardController::class, 'index']);
 
@@ -37,10 +35,8 @@ Route::delete('/booking/{id}', [BookingController::class, 'destroy'])->name('boo
 
 // Route::get('/Features', [PackageFeaturesController::class, 'feature']);
 
-// Resource route (bisa digunakan salah satu saja, dengan resource atau define manual)
-Route::resource('package-featured', PackageFeaturesController::class);
 
-// Atau definisi manual seperti ini
+
 Route::get('/featured', [PackageFeaturesController::class, 'index'])->name('featured.index');
 Route::get('/featured/create', [PackageFeaturesController::class, 'create'])->name('featured.create');
 Route::post('/featured', [PackageFeaturesController::class, 'store'])->name('featured.store');
@@ -73,3 +69,23 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+// routes/web.php
+Route::post('/login', [loginController::class, 'login'])->name('login');
+
+// Admin routes
+Route::middleware(['auth', 'checkRole:admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    // Add other admin routes here
+});
+
+// User routes
+Route::middleware(['auth', 'checkRole:user'])->group(function () {
+    Route::get('/user/dashboard', function () {
+        return view('user.dashboard');
+    })->name('user.dashboard');
+    
+});

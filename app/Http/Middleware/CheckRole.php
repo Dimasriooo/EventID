@@ -20,17 +20,18 @@ class CheckRole
     //     return $next($request);
     // }
 
-    public function handle($request, Closure $next, $role)
-{
-    if (Auth::user()->role !== $role) {
-        return response()->json([
-            "code" => 403,
-            "status" => "error",
-            "message" => "Access denied"
-        ]);
-    }
+    public function handle(Request $request, Closure $next, $role)
+    {
+        if (! $request->user() || $request->user()->role !== $role) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'Unauthorized access'
+                ], 403);
+            }
+            return redirect()->route('login')->with('error', 'Unauthorized access');
+        }
 
-    return $next($request);
-}
+        return $next($request);
+    }
 
 }
